@@ -92,11 +92,9 @@ export class KolInputDate
 	private valueType: DateValueType = null;
 
 	/**
-	 * Whether the field has a value, rendered as the root class `has-value`. It is a plain field, not
-	 * state: it follows the initial value and every `change`, and the class follows with the next
-	 * render (#11053).
+	 * Whether the field has a value, rendered as the root class `has-value`.
 	 */
-	private hasValue = false;
+	@State() private hasValue = false;
 
 	public constructor() {
 		super();
@@ -431,6 +429,7 @@ export class KolInputDate
 	public async reset() {
 		// `_value` keeps its value; only the rendered and the form value are cleared.
 		this.setRenderProp('value', undefined as unknown as string);
+		this.hasValue = false;
 		forceUpdate(this);
 		this.formAssociation.setFormAssociatedValue('');
 
